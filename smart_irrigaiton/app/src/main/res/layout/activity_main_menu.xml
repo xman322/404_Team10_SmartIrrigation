@@ -63,7 +63,7 @@
             android:id="@+id/tvMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mode_simple1"
+            android:text="@string/mode_simple"
             android:textSize="32dp"
             android:textColor="@color/black"
             android:textStyle="bold"

@@ -6,34 +6,220 @@
     android:layout_height="match_parent"
     tools:context=".manualMode">
 
-    <Button
-        android:id="@+id/start_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:text="start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.278"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
-        />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/stop_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:text="stop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.704"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.497"
-       />
+        <!-- Zone 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
+            <ToggleButton
+                android:id="@+id/toggleButton1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textOff="Off"
+                android:textOn="On"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zone 1"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <!-- Repeat the pattern for Zone 2 to Zone 9 with added space -->
+
+        <!-- Zone 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <ToggleButton
+                android:id="@+id/toggleButton2"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textOff="Off"
+                android:textOn="On"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zone 2"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <!-- Repeat this pattern for Zone 3 to Zone 9 with added space -->
+
+        <!-- Zone 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <ToggleButton
+                android:id="@+id/toggleButton3"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textOff="Off"
+                android:textOn="On"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zone 3"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <!-- Repeat this pattern for Zone 4 to Zone 9 with added space -->
+
+        <!-- Zone 4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <ToggleButton
+                android:id="@+id/toggleButton4"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textOff="Off"
+                android:textOn="On"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zone 4"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <!-- Repeat this pattern for Zone 5 to Zone 9 with added space -->
+
+        <!-- Zone 5 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <ToggleButton
+                android:id="@+id/toggleButton5"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textOff="Off"
+                android:textOn="On"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zone 5"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <!-- Repeat this pattern for Zone 6 to Zone 9 with added space -->
+
+        <!-- Zone 6 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <ToggleButton
+                android:id="@+id/toggleButton6"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textOff="Off"
+                android:textOn="On"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zone 6"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <!-- Repeat this pattern for Zone 7 to Zone 9 with added space -->
+
+        <!-- Zone 7 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <ToggleButton
+                android:id="@+id/toggleButton7"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textOff="Off"
+                android:textOn="On"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zone 7"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <!-- Repeat this pattern for Zone 8 to Zone 9 with added space -->
+
+        <!-- Zone 8 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <ToggleButton
+                android:id="@+id/toggleButton8"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textOff="Off"
+                android:textOn="On"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zone 8"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+        <!-- Zone 9 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <ToggleButton
+                android:id="@+id/toggleButton9"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textOff="Off"
+                android:textOn="On"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zone 9"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
     <Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
@@ -44,5 +230,6 @@
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.973" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

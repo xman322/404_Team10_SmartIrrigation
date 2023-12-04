@@ -13,8 +13,10 @@
         android:text="@string/select_time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22" />
 
     <TextView
         android:id="@+id/timeTextView"
@@ -25,10 +27,9 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
+        app:layout_constraintVertical_bias="0.341" />
 
     <Button
         android:id="@+id/btnBack"
@@ -47,14 +48,125 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter Time For Simple Mode"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.378" />
+        app:layout_constraintVertical_bias="0.124" />
+
+    <TextView
+        android:id="@+id/tvSelDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select day to deploy"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.674" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:columnCount="3"
+        android:rowCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSelDay">
+
+        <!-- Buttons for each day of the week -->
+        <Button
+            android:id="@+id/buttonSunday"
+            android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_margin="4dp"
+        android:text="Sunday"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/buttonMonday"
+            android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_margin="4dp"
+        android:text="Monday"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/buttonSunday"
+        app:layout_constraintEnd_toStartOf="@id/buttonTuesday" />
+
+        <Button
+            android:id="@+id/buttonTuesday"
+            android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_margin="4dp"
+        android:text="Tuesday"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/buttonMonday"
+        app:layout_constraintEnd_toStartOf="@id/buttonWednesday" />
+
+        <Button
+            android:id="@+id/buttonWednesday"
+            android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_margin="4dp"
+        android:text="Wednesday"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/buttonTuesday"
+        app:layout_constraintEnd_toStartOf="@id/buttonThursday" />
+
+        <Button
+            android:id="@+id/buttonThursday"
+            android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_margin="4dp"
+        android:text="Thursday"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/buttonWednesday"
+        app:layout_constraintEnd_toStartOf="@id/buttonFriday" />
+
+        <Button
+            android:id="@+id/buttonFriday"
+            android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_margin="4dp"
+        android:text="Friday"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/buttonThursday"
+        app:layout_constraintEnd_toStartOf="@id/buttonSaturday" />
+
+        <Button
+            android:id="@+id/buttonSaturday"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_margin="4dp"
+            android:text="Saturday"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/buttonFriday"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </GridLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

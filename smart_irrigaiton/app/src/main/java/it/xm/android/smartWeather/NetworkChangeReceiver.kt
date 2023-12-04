@@ -11,12 +11,15 @@ import androidx.core.app.NotificationCompat
 class NetworkChangeReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
+        //var value: Int = 0
         if (isInternetConnected(context!!)) {
             // Internet is connected
-           // Toast.makeText(context, "Internet Connected", Toast.LENGTH_LONG).show()
+
+            Toast.makeText(context, "Internet Connected", Toast.LENGTH_LONG).show()
         } else {
             // Internet is disconnected, send toast notification
-            Toast.makeText(context, "Internet Disconnected", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Internet Disconnected: Please Wait", Toast.LENGTH_LONG).show()
+            //value += 1
         }
     }
 

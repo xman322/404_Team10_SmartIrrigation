@@ -14,12 +14,13 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
-import it.xm.android.smartWeather.databinding.ActivityDetailBinding
+import it.luccap11.android.smartWeather.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var preferences: SharedPreferences
     private lateinit var preferences2: SharedPreferences
+    private lateinit var preferences3: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -30,12 +31,19 @@ class DetailActivity : AppCompatActivity() {
         if(zone != null){
             binding.zone.setImageResource(zone.cover)
             binding.zonenumber.text = zone.zoneNumber
-            binding.enabled.text = zone.enabled
+
+            if(zone.enabled == true){
+                binding.enabled.text = "Enabled"
+            }
+            else{
+                binding.enabled.text = "Disabled"
+            }
             binding.options.text = zone.options
             binding.grassType.text = zone.grassType
             binding.simpleTime.text = zone.time
 
         }
+
 
 
         // code to send notification
@@ -65,32 +73,38 @@ class DetailActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.btnEnable)
         button.setOnClickListener {
             if (zone != null) {
-                if(zone.enabled == "Enabled"){
-                    zone.enabled = "Disabled"
+                if(zone.enabled == true){
+                    zone.enabled = false
 
                 }
                 else{
-                    zone.enabled = "Enabled"
+                    zone.enabled = true
                 }
-                finish()
-                overridePendingTransition(0, 0)
-                startActivity(getIntent())
-                overridePendingTransition(0, 0)
-                button.setText("Enable")
+                    finish()
+                    overridePendingTransition(0, 0)
+                    startActivity(getIntent())
+                    overridePendingTransition(0, 0)
+                    button.setText("Enable")
             }
         }
 
         if (zone != null) {
-            if(zone.enabled == "Disabled"){
+            if(zone.enabled == false){
                 button.setText("Enable")
             }
-            else if(zone.enabled == "Enabled"){
+            else if(zone.enabled == true){
                 button.setText("Disable")
             }
         }
         val enabled = findViewById<TextView>(R.id.enabled)
         if (zone != null) {
-            enabled.setText(zone.enabled)
+            if(zone.enabled == true){
+                enabled.setText("Enabled")
+            }
+            else{
+                enabled.setText("Disabled")
+            }
+
 
         }
         val back = findViewById<Button>(R.id.btnBack)
@@ -182,6 +196,50 @@ class DetailActivity : AppCompatActivity() {
                     }
 
                     preferences2.edit().putString("selected_shade", selectedShade).apply()
+
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
+
+
+        preferences3 = getPreferences(Context.MODE_PRIVATE)
+        val covers = arrayOf("grass", "garden", "garden2", "fence")
+
+        val spinner3 = findViewById<Spinner>(R.id.spPic)
+        val adapter3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, covers)
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner3.adapter = adapter3
+        val savedValue3 = preferences3.getString("selected_pic", "")
+        if(savedValue3 != null && savedValue3.isNotEmpty()){
+            val index = covers.indexOf(savedValue3)
+            spinner3.setSelection(index)
+        }
+
+        spinner3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                val selectedPic = p0?.getItemAtPosition(p2).toString()
+                if (zone != null) {
+                    if(selectedPic == "grass"){
+                        zone.cover = R.drawable.grass
+                    }
+                    else if( selectedPic == "fence"){
+                        zone.cover = R.drawable.fence
+                    }
+                    else if(selectedPic == "garden"){
+                        zone.cover = R.drawable.garden
+                    }
+                    else if(selectedPic == "garden2"){
+                        zone.cover = R.drawable.garden2
+                    }
+
+                    preferences3.edit().putString("selected_pic", selectedPic).apply()
+
 
                 }
             }

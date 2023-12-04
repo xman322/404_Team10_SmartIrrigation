@@ -5,20 +5,28 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
+import android.widget.Toast
+import android.widget.ToggleButton
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.getSystemService
-
-
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import it.xm.android.smartWeather.databinding.ActivityManualModeBinding
 
 
 
 class manualMode : AppCompatActivity() {
+    private lateinit var binding: ActivityManualModeBinding
+    private lateinit var database: DatabaseReference
+
+    private lateinit var sharedPreferences: SharedPreferences
 
 
     private lateinit var startButton: Button
@@ -30,7 +38,12 @@ class manualMode : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_manual_mode)
+        binding = ActivityManualModeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        sharedPreferences = getPreferences(Context.MODE_PRIVATE)
+
+
 
         val back = findViewById<Button>(R.id.btnBack)
         back.setOnClickListener {
@@ -39,6 +52,19 @@ class manualMode : AppCompatActivity() {
         }
 
 
+        setUpToggleButton(R.id.toggleButton1, "Zone1")
+        setUpToggleButton(R.id.toggleButton2, "Zone2")
+        setUpToggleButton(R.id.toggleButton3, "Zone3")
+        setUpToggleButton(R.id.toggleButton4, "Zone4")
+        setUpToggleButton(R.id.toggleButton5, "Zone5")
+        setUpToggleButton(R.id.toggleButton6, "Zone6")
+        setUpToggleButton(R.id.toggleButton7, "Zone7")
+        setUpToggleButton(R.id.toggleButton8, "Zone8")
+        setUpToggleButton(R.id.toggleButton9, "Zone9")
+
+
+
+/*
         startButton = findViewById(R.id.start_button)
         stopButton = findViewById(R.id.stop_button)
 
@@ -59,6 +85,101 @@ class manualMode : AppCompatActivity() {
 
         stopButton.setOnClickListener {
             timer?.cancel()
+        }*/
+    }
+
+/*
+    private fun setUpToggleButton(toggleButtonId: Int, key: String) {
+        val toggleButton = findViewById<ToggleButton>(toggleButtonId)
+
+        // Set the initial state based on the saved value in SharedPreferences
+        toggleButton.isChecked = sharedPreferences.getBoolean(key, false)
+
+        toggleButton.setOnCheckedChangeListener { _, isChecked ->
+            // Handle the state change here
+
+            // Save the state in SharedPreferences
+            sharedPreferences.edit().putBoolean(key, isChecked).apply()
+
+            if (isChecked) {
+                // Zone is on
+                var mode: Int = 1
+                database = FirebaseDatabase.getInstance().getReference(key)
+                database.child("On").setValue(mode)
+            } else {
+                // Zone is off
+                var mode: Int = 0
+                database = FirebaseDatabase.getInstance().getReference(key)
+                database.child("On").setValue(mode)
+            }
+        }
+    }*/
+
+    private fun setUpToggleButton(toggleButtonId: Int, key: String) {
+        val toggleButton = findViewById<ToggleButton>(toggleButtonId)
+
+        // Set the initial state based on the saved value in SharedPreferences
+        toggleButton.isChecked = sharedPreferences.getBoolean(key, false)
+
+        // Set the background color based on the initial state
+        updateToggleButtonBackground(toggleButton, toggleButton.isChecked)
+
+        toggleButton.setOnCheckedChangeListener { _, isChecked ->
+            // Handle the state change here
+
+            // Save the state in SharedPreferences
+            sharedPreferences.edit().putBoolean(key, isChecked).apply()
+
+            // Update the background color based on the state
+            updateToggleButtonBackground(toggleButton, isChecked)
+
+            if (isChecked) {
+                // Zone is on
+                var mode: Int = 1
+                database = FirebaseDatabase.getInstance().getReference(key)
+                database.child("On").setValue(mode)
+
+                var update: Int = 1
+                database = FirebaseDatabase.getInstance().getReference("Update")
+                database.setValue(update)
+            } else {
+                // Zone is off
+                var mode: Int = 0
+                database = FirebaseDatabase.getInstance().getReference(key)
+                database.child("On").setValue(mode)
+
+
+                var update: Int = 1
+                database = FirebaseDatabase.getInstance().getReference("Update")
+                database.setValue(update)
+            }
+        }
+    }
+
+    private fun updateToggleButtonBackground(toggleButton: ToggleButton, isChecked: Boolean) {
+        val colorResId = if (isChecked) {
+            android.R.color.darker_gray
+        } else {
+            R.color.light_grey
+        }
+
+        toggleButton.setBackgroundResource(colorResId)
+    }
+
+
+
+
+    private fun readData() {
+        database = FirebaseDatabase.getInstance().getReference("Zone1")
+        database.child("Desired").get().addOnSuccessListener {
+            if(it.exists()){
+                val capacity:Float = it.value.toString().toFloat()
+                //binding.textViewData.setText(capacity.toString())
+            }else{
+                Toast.makeText(this, "Path doesnt exits", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this, "FAILED", Toast.LENGTH_SHORT).show()
         }
     }
 

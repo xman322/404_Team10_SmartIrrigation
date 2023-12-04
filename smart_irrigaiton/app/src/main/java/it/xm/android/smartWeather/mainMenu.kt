@@ -15,6 +15,8 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.core.app.NotificationCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import it.xm.android.smartWeather.ui.main.MainActivity
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
@@ -25,6 +27,9 @@ class mainMenu : AppCompatActivity() {
 
     lateinit var bottomNav : BottomNavigationView
     private val networkChangeReceiver = NetworkChangeReceiver()
+    private lateinit var database: DatabaseReference
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,17 +44,42 @@ class mainMenu : AppCompatActivity() {
         val smart = findViewById<Button>(R.id.btnSmart)
         smart.setOnClickListener {
             tvMode.text = "Mode: Smart"
+            var mode: Int = 0
+            database = FirebaseDatabase.getInstance().getReference("Mode")
+            database.setValue(mode)
+
+
+            var update: Int = 1
+            database = FirebaseDatabase.getInstance().getReference("Update")
+            database.setValue(update)
         }
 
         val simple = findViewById<Button>(R.id.btnSimple)
         simple.setOnClickListener {
             tvMode.text = "Mode: Simple"
+            var mode: Int = 1
+            database = FirebaseDatabase.getInstance().getReference("Mode")
+            database.setValue(mode)
+
+
+
+            var update: Int = 1
+            database = FirebaseDatabase.getInstance().getReference("Update")
+            database.setValue(update)
             val intent = Intent(this, simpleMode::class.java)
             startActivity(intent)
         }
         val manual = findViewById<Button>(R.id.btnManual)
         manual.setOnClickListener {
             tvMode.text = "Mode: Manual"
+            var mode: Int = 2
+            database = FirebaseDatabase.getInstance().getReference("Mode")
+            database.setValue(mode)
+
+
+            var update: Int = 1
+            database = FirebaseDatabase.getInstance().getReference("Update")
+            //database.setValue(update)
             val intent = Intent(this, manualMode::class.java)
             startActivity(intent)
         }

@@ -3,7 +3,7 @@ package it.xm.android.smartWeather
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import it.xm.android.smartWeather.databinding.CardCallBinding
+import it.luccap11.android.smartWeather.databinding.CardCallBinding
 
 class CardAdapter(
     private val zones: List<zone>,

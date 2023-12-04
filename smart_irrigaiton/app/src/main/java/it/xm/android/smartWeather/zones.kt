@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import it.xm.android.smartWeather.ui.main.MainActivity
+import it.luccap11.android.smartWeather.ui.main.MainActivity
 
 class zones : AppCompatActivity() {
 

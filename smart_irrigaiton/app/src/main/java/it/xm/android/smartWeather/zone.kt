@@ -8,12 +8,12 @@ val ZONE_EXTRA = "zoneExtra"
 class zone (
     var cover: Int,
     var zoneNumber: String,
-    var enabled: String,
+    var enabled: Boolean,
     var options: String,
     var grassType: String,
     var time: String,
     var waterDesired: Double,
     val id: Int? = zoneList.size
-)
+    )
 
 
